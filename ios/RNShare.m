@@ -81,6 +81,7 @@ RCT_EXPORT_MODULE()
     @"INSTAGRAM": @"instagram",
     @"INSTAGRAM_STORIES": @"instagram-stories",
     @"EMAIL": @"email",
+    @"LINE": @"line",
     
     @"SHARE_BACKGROUND_IMAGE": @"shareBackgroundImage",
     @"SHARE_STICKER_IMAGE": @"shareStickerImage",
@@ -96,7 +97,11 @@ RCT_EXPORT_METHOD(shareSingle:(NSDictionary *)options
     NSString *social = [RCTConvert NSString:options[@"social"]];
     if (social) {
         NSLog(social);
-        if([social isEqualToString:@"facebook"]) {
+        if([social isEqualToString:@"line"]) {
+            NSLog(@"TRY OPEN LINE");
+            GenericShare *shareCtl = [[GenericShare alloc] init];
+            [shareCtl shareSingle:options failureCallback: failureCallback successCallback: successCallback serviceType: SLServiceTypeFacebook];
+        } else if([social isEqualToString:@"facebook"]) {
             NSLog(@"TRY OPEN FACEBOOK");
             GenericShare *shareCtl = [[GenericShare alloc] init];
             [shareCtl shareSingle:options failureCallback: failureCallback successCallback: successCallback serviceType: SLServiceTypeFacebook];

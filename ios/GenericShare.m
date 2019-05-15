@@ -68,6 +68,11 @@
           [self openScheme:URL];
         }
 
+        if ([options[@"social"] isEqualToString:@"line"]) {
+          NSString *URL = [NSString stringWithFormat:@"https://line.me/msg/text/?%@", options[@"url"]];
+          [self openScheme:URL];
+        }
+
       }
   }
   - (void)openScheme:(NSString *)scheme {
