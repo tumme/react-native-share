@@ -69,8 +69,11 @@
         }
 
         if ([options[@"social"] isEqualToString:@"line"]) {
-          NSString *URL = [NSString stringWithFormat:@"line://msg/text/?%@", options[@"url"]];
-          [self openScheme:URL];
+          NSString *lineURL = [NSString stringWithFormat:@"line://msg/text/?%@", options[@"url"]];
+          if ([[UIApplication sharedApplication] canOpenURL: lineURL]) {
+                [[UIApplication sharedApplication] openURL: lineURL];
+                successCallback(@[]);
+          }
         }
 
       }
